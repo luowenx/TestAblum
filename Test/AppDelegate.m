@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
 @interface AppDelegate ()
+
+@property (strong, nonatomic) UINavigationController *nav;
+
 
 @end
 
@@ -16,7 +19,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    //ViewController 这个是进入app的第一个页面
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    ViewController *vc = [mainStoryBoard instantiateInitialViewController];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    self.nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.nav.navigationBar.hidden = YES;
+    [self.window setRootViewController:self.nav];
+    
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 
